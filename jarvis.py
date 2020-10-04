@@ -1,6 +1,7 @@
 import pyttsx3
-import datetime
 import speech_recognition as sr
+import datetime
+
 #sapi5 is a microsoft api for voice assistant
 engine = pyttsx3.init('sapi5')
 
@@ -25,25 +26,27 @@ def greet():
 
     speak("I am Jarvis. How may I help you?")
 
-def takecommand():
+def takeCommand():
     #fuction takes microphone input from user and return string output
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening. . ")
-        r.pause_threshold() = 1
+        r.pause_threshold = 1
         audio = r.listen(source)
 
         try:
             print("Recognising. .")
-            query = r.recognize_google(audio, language= 'en-in')
+            query = r.recognize_google(audio, language = 'en-in')
             print(f"user said: {query}\n")
 
         except Exception as e:
                 print(e)
                 print("I was not able to catch that. Say that again please. . ")
                 return "None"
+        return query
 
 
 if __name__ == "__main__":
     #speak("hello Mannan how are you")
     greet()
+    takeCommand()
