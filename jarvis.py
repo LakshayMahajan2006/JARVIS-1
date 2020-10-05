@@ -1,5 +1,6 @@
 import pyttsx3
 import speech_recognition as sr
+import wikipedia
 import datetime
 
 #sapi5 is a microsoft api for voice assistant
@@ -49,4 +50,15 @@ def takeCommand():
 if __name__ == "__main__":
     #speak("hello Mannan how are you")
     greet()
-    takeCommand()
+    query  = takeCommand().lower()
+    #logic for executing tasks
+    while True:
+        if 'wikipedia' in query:
+            speak('searching wikipedia. . ')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences = 2)
+            speak("According to wikipedia")
+            print(results)
+            speak(results)
+
+
