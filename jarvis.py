@@ -2,6 +2,8 @@ import pyttsx3
 import speech_recognition as sr
 import wikipedia
 import webbrowser
+import os
+import random
 import datetime
 
 #sapi5 is a microsoft api for voice assistant
@@ -64,14 +66,30 @@ if __name__ == "__main__":
             speak(results)
 
         elif 'open youtube' in query:
-            webbrowseropen("youtube.com")
+
+            webbrowser.open("youtube.com")
 
         elif 'open google' in query:
-            webbrowseropen("google.com")
+
+            webbrowser.open("google.com")
+            
         
-         elif 'open stackoverflow' in query:
-            webbrowseropen("stackoverflow.com")
+        elif 'open stack overflow' in query:
+
+            webbrowser.open("stackoverflow.com")
+             
+            
         
+        elif 'play music' in query:
+             music_dir = 'E:\\Music'
+             songs = os.listdir(music_dir)
+             print(songs)
+             os.startfile(os.path.join(music_dir, songs[random.randint(0,100)]))
+
+        elif 'the time' in query:
+            strtime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"Sir, the Time is {strtime}" )
+           
     
 
 
