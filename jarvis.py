@@ -6,6 +6,7 @@ import os
 import random
 import datetime
 import smtplib
+import wolframalpha
 import subprocess
 
 #sapi5 is a microsoft api for voice assistant
@@ -119,6 +120,17 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
                     speak("sorry we were not able to send the email")
+
+        elif 'ask' in query:
+
+            speak('I can answer to computational and geographical questions  and what question do you want to ask now')
+            question=takeCommand()
+            app_id='QTQ574-4HYK5Y5QAK'
+            client = wolframalpha.Client('QTQ574-4HYK5Y5QAK')
+            res = client.query(question)
+            answer = next(res.results).text
+            speak(answer)
+            print(answer)
 
         
         elif "log off" in query or "sign out" in query:
