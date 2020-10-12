@@ -6,6 +6,7 @@ import os
 import random
 import datetime
 import smtplib
+import subprocess
 
 #sapi5 is a microsoft api for voice assistant
 engine = pyttsx3.init('sapi5')
@@ -108,7 +109,7 @@ if __name__ == "__main__":
             speak(f"Sir, the Time is {strtime}" )
 
             
-        elif 'email to hary' in query:
+        elif 'email to harry' in query:
                 try:
                     speak("What should I say ?")
                     content = takeCommand()
@@ -118,7 +119,12 @@ if __name__ == "__main__":
                 except Exception as e:
                     print(e)
                     speak("sorry we were not able to send the email")
-           
+
+        
+        elif "log off" in query or "sign out" in query:
+            speak("Ok , your pc will log off in 10 sec make sure you exit from all applications")
+            subprocess.call(["shutdown", "/l"])
+			  
     
 
 
