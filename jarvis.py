@@ -121,9 +121,15 @@ if __name__ == "__main__":
                     print(e)
                     speak("sorry we were not able to send the email")
 
+        elif 'news' in query:
+
+            news = webbrowser.open_new_tab("https://timesofindia.indiatimes.com/home/headlines")
+            speak('Here are some headlines from the Times of India,Happy reading')
+            
+
         elif 'ask' in query:
 
-            speak('I can answer to computational and geographical questions  and what question do you want to ask now')
+            speak('I can answer to computational and geographical questions  and what question do you want to ask now?')
             question=takeCommand()
             app_id='QTQ574-4HYK5Y5QAK'
             client = wolframalpha.Client('QTQ574-4HYK5Y5QAK')
