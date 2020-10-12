@@ -5,6 +5,7 @@ import webbrowser
 import os
 import random
 import datetime
+import smtplib
 
 #sapi5 is a microsoft api for voice assistant
 engine = pyttsx3.init('sapi5')
@@ -49,13 +50,29 @@ def takeCommand():
                 return "None"
         return query
 
+def sendEmail(to, content):
+    #init gmail SMTP
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    #identify to server
+    server.ehlo()
+    #encrypt session
+    server.starttls()
+    server.login('mannanbhat60@gmail.com', 'redemption#@')
+    server.sendmail('mannanbhat60@gmail.com', to, content)
+    server.close()
+
+     
+        
+
+
 
 if __name__ == "__main__":
     #speak("hello Mannan how are you")
     greet()
     
     #logic for executing tasks
-    while True:
+    #while True:
+    if 1:
         query  = takeCommand().lower()
         if 'wikipedia' in query:
             speak('searching wikipedia. . ')
@@ -89,6 +106,18 @@ if __name__ == "__main__":
         elif 'the time' in query:
             strtime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the Time is {strtime}" )
+
+            
+        elif 'email to hary' in query:
+                try:
+                    speak("What should I say ?")
+                    content = takeCommand()
+                    to = "mannanbhat60@gmail.com"
+                    sendEmail(to, content)
+                    speak("email has been sent")
+                except Exception as e:
+                    print(e)
+                    speak("sorry we were not able to send the email")
            
     
 
